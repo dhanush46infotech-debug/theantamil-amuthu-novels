@@ -1,0 +1,53 @@
+$primary-blue: #0a2a43;
+
+.backgroundVowelsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  perspective: 2000px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.vowel {
+  position: absolute;
+  font-size: clamp(32px, 8vw, 80px);
+  font-weight: bold;
+  color: var(--color-accent-primary);  // Changed from #ffd700 to use theme variable
+  opacity: 0.3;
+  font-family: 'Arial', sans-serif;
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.3),
+    0 0 40px rgba(255, 215, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+
+  // 3D depth effect
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+
+  @media (max-width: 768px) {
+    font-size: clamp(24px, 6vw, 48px);
+  }
+
+  @media (max-width: 480px) {
+    font-size: clamp(20px, 5vw, 36px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform-style: flat;
+    filter: none;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+}

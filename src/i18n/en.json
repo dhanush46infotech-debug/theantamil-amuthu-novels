@@ -1,0 +1,37 @@
+{
+  "menu": {
+    "home": "Home",
+    "contact": "Contact",
+    "about": "About Us"
+  },
+  "search": {
+    "placeholder": "Search...",
+    "label": "Search",
+    "clear": "Clear",
+    "selectLanguage": "Select search language"
+  },
+  "theme": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "toggle": "Toggle theme"
+  },
+  "user": {
+    "profile": "User Profile",
+    "notifications": "Notifications",
+    "login": "User Login",
+    "adminLogin": "Admin Login"
+  },
+  "languages": {
+    "tamil": "தமிழ்",
+    "english": "English",
+    "telugu": "తెలుగు"
+  },
+  "aria": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openSearch": "Open search",
+    "closeSearch": "Close search",
+    "selectLanguage": "Select language",
+    "clearSearch": "Clear search"
+  }
+}

@@ -1,0 +1,390 @@
+@use './variables' as *;
+
+// ==============================================
+// HEADER CONTROLS COMPONENT STYLES
+// ==============================================
+
+// Container for all control buttons
+.controlsContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  @include respond-to(tablet-and-below) {
+    gap: var(--spacing-xs);
+  }
+}
+
+// ==============================================
+// DARK MODE TOGGLE
+// ==============================================
+
+.darkModeToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  cursor: pointer;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-family: var(--font-family-primary);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.2));
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: translateZ(20px) translateY(-4px);
+    box-shadow:
+      0 8px 16px rgba(255, 215, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    transform: translateZ(10px) translateY(-2px) scale(0.98);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  @include respond-to(tablet-and-below) {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.darkModeIcon {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-normal);
+
+  @include respond-to(tablet-and-below) {
+    font-size: 20px;
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+.darkModeText {
+  font-weight: 500;
+  -webkit-user-select: none;
+  user-select: none;
+
+  @include respond-to(mobile) {
+    display: none;
+  }
+}
+
+// Icon animation on toggle
+.iconRotate {
+  animation: rotateIcon 0.5s ease-in-out;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// ==============================================
+// ICON BUTTONS (Bell, User, etc.)
+// ==============================================
+
+.iconButtonWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.iconButton {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  color: #ffd700;
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all var(--transition-fast);
+  min-width: 40px;
+  min-height: 40px;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 215, 0, 0.25));
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateZ(15px) translateY(-3px) rotateX(5deg);
+    box-shadow:
+      0 6px 12px rgba(255, 215, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  &:active {
+    transform: translateZ(8px) translateY(-1px) scale(0.95);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  @include respond-to(tablet-and-below) {
+    font-size: 20px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: var(--spacing-xs);
+  }
+}
+
+// Notification badge (for bell icon)
+.notificationBadge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #ff4444;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-bg-primary);
+  animation: pulse 2s infinite;
+
+  @include reduced-motion {
+    animation: none;
+  }
+
+  @include respond-to(tablet-and-below) {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+// Hover tooltip for icon buttons
+.iconButtonTooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(10, 42, 67, 0.95), rgba(15, 60, 87, 0.98));
+  color: var(--color-accent-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10000;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: rgba(10, 42, 67, 0.95);
+  }
+
+  @include respond-to(mobile) {
+    font-size: var(--font-size-xs);
+    padding: 4px 8px;
+  }
+}
+
+// Icon variations
+.bellIcon {
+  animation: ring 2s ease-in-out infinite;
+  animation-delay: 3s;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+@keyframes ring {
+  0%, 90%, 100% {
+    transform: rotate(0deg);
+  }
+  92% {
+    transform: rotate(-15deg);
+  }
+  94% {
+    transform: rotate(15deg);
+  }
+  96% {
+    transform: rotate(-10deg);
+  }
+  98% {
+    transform: rotate(10deg);
+  }
+}
+
+.userIcon {
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  @include reduced-motion {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Yellow login icons styling
+.yellowIcon {
+  filter: brightness(0) saturate(100%) invert(79%) sepia(88%) saturate(1250%) hue-rotate(360deg) brightness(102%) contrast(101%);
+
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(88%) saturate(1500%) hue-rotate(360deg) brightness(110%) contrast(105%);
+  }
+
+  @include reduced-motion {
+    filter: brightness(0) saturate(100%) invert(79%) sepia(88%) saturate(1250%) hue-rotate(360deg) brightness(102%) contrast(101%);
+  }
+}
+
+// ==============================================
+// DROPDOWN MENU (for user icon)
+// ==============================================
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border: 2px solid var(--color-accent-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: var(--z-language-switcher);
+}
+
+.dropdownList {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-xs);
+}
+
+.dropdownItem {
+  padding: var(--spacing-md);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    padding-left: calc(var(--spacing-md) + 4px);
+  }
+
+  &:active {
+    background-color: rgba(255, 215, 0, 0.2);
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      padding-left: var(--spacing-md);
+    }
+  }
+}
+
+// ==============================================
+// RESPONSIVE UTILITIES
+// ==============================================
+
+.hideOnMobile {
+  @include respond-to(mobile) {
+    display: none !important;
+  }
+}
+
+.hideOnTablet {
+  @include respond-to(tablet) {
+    display: none !important;
+  }
+}
+
+.showOnMobile {
+  display: none;
+
+  @include respond-to(mobile) {
+    display: flex !important;
+  }
+}

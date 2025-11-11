@@ -1,0 +1,277 @@
+@use './variables' as *;
+
+// Font Selector Component Styles
+
+.fontSelectorContainer {
+  position: relative;
+  display: inline-flex;
+}
+
+.fontButton {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  cursor: pointer;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: #ffd700;
+  font-size: var(--font-size-md);
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  position: relative;
+  transition: all var(--transition-fast);
+  min-height: 40px;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 215, 0, 0.25));
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateZ(15px) translateY(-3px) rotateX(5deg);
+    box-shadow:
+      0 6px 12px rgba(255, 215, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  &:active {
+    transform: translateZ(8px) translateY(-1px) scale(0.95);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-sm);
+    min-height: 36px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: 6px;
+  }
+}
+
+.fontIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.fontLabel {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: #ffd700;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.dropdownArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+
+  &.open {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+  }
+}
+
+// Font Dropdown Menu
+.fontDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  min-width: 220px;
+  max-height: 400px;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 480px) {
+    min-width: 180px;
+    max-height: 300px;
+  }
+}
+
+.fontDropdownHeader {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+  flex-shrink: 0;
+}
+
+.dropdownTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+// Font List
+.fontList {
+  list-style: none;
+  margin: 0;
+  padding: var(--spacing-xs);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  // Scrollbar styling
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(255, 215, 0, 0.5);
+    }
+  }
+}
+
+// Font Option Item
+.fontOption {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 10px var(--spacing-md);
+  background: none;
+  border: 1px solid transparent;
+  color: var(--color-text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.2);
+    padding-left: calc(var(--spacing-md) + 4px);
+  }
+
+  &.active {
+    background-color: rgba(255, 215, 0, 0.15);
+    border-color: rgba(255, 215, 0, 0.4);
+    color: var(--color-accent-primary);
+    padding-left: calc(var(--spacing-md) + 4px);
+  }
+
+  &:active {
+    background-color: rgba(255, 215, 0, 0.2);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      padding-left: var(--spacing-md);
+    }
+
+    &.active {
+      padding-left: var(--spacing-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px var(--spacing-sm);
+    gap: 8px;
+    font-size: 14px;
+
+    &:hover,
+    &.active {
+      padding-left: calc(var(--spacing-sm) + 3px);
+    }
+  }
+}
+
+// Radio Button Indicator
+.radioButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.fontName {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}

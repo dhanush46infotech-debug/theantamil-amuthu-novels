@@ -1,0 +1,37 @@
+{
+  "menu": {
+    "home": "முகப்பு",
+    "contact": "தொடர்புக்கு",
+    "about": "எங்களை பற்றி"
+  },
+  "search": {
+    "placeholder": "தேடு...",
+    "label": "தேடல்",
+    "clear": "அழி",
+    "selectLanguage": "தேடல் மொழியை தேர்ந்தெடு"
+  },
+  "theme": {
+    "darkMode": "இருண்ட பயன்முறை",
+    "lightMode": "வெளிச்ச பயன்முறை",
+    "toggle": "தீம் மாற்று"
+  },
+  "user": {
+    "profile": "பயனர் சுயவிவரம்",
+    "notifications": "அறிவிப்புகள்",
+    "login": "பயனர் உள்நுழைவு",
+    "adminLogin": "நிர்வாகி உள்நுழைவு"
+  },
+  "languages": {
+    "tamil": "தமிழ்",
+    "english": "English",
+    "telugu": "తెలుగు"
+  },
+  "aria": {
+    "openMenu": "பட்டியை திற",
+    "closeMenu": "பட்டியை மூடு",
+    "openSearch": "தேடலை திற",
+    "closeSearch": "தேடலை மூடு",
+    "selectLanguage": "மொழியை தேர்ந்தெடு",
+    "clearSearch": "தேடலை அழி"
+  }
+}

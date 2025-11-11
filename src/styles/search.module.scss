@@ -1,0 +1,450 @@
+@use './variables' as *;
+
+// ==============================================
+// SEARCH BAR COMPONENT STYLES
+// ==============================================
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  @include respond-to(desktop) {
+    width: auto;
+  }
+
+  @include respond-to(tablet-and-below) {
+    width: 100%;
+  }
+}
+
+// External Language Selector (outside search bar)
+.languageSelectorExternal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.languageIconButton {
+  font-size: var(--search-icon-size);
+  color: var(--color-accent-primary);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.25));
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  min-width: 40px;
+  min-height: 40px;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.35));
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateY(-2px) translateZ(10px);
+    box-shadow:
+      0 4px 10px rgba(255, 215, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(0.95);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+
+  @include respond-to(tablet-and-below) {
+    font-size: 18px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: var(--spacing-xs);
+  }
+}
+
+// Search Form
+.searchForm {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+// Search Input Wrapper
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: var(--search-width-expanded);
+  transition: width var(--transition-normal);
+
+  @include respond-to(tablet-and-below) {
+    width: 100%;
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Search Input Field
+.searchInput {
+  width: 100%;
+  height: var(--search-height);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  color: var(--color-search-text);
+  border: 2px solid var(--color-search-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-md);
+  font-family: var(--font-family-primary);
+  outline: none;
+  transition: all var(--transition-normal);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  transform-style: preserve-3d;
+
+  &::placeholder {
+    color: var(--color-search-placeholder);
+    font-size: var(--font-size-md);
+  }
+
+  &:hover {
+    border-color: var(--color-search-focus);
+    box-shadow:
+      0 4px 12px rgba(255, 215, 0, 0.2),
+      inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    transform: translateZ(10px) translateY(-2px);
+  }
+
+  &:focus {
+    border-color: var(--color-search-focus);
+    background: linear-gradient(135deg, #ffffff 0%, #fffef8 100%);
+    box-shadow:
+      0 0 0 3px rgba(255, 215, 0, 0.3),
+      0 6px 16px rgba(255, 215, 0, 0.3),
+      inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    transform: translateZ(15px) translateY(-3px);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+    transform: none;
+
+    &:hover,
+    &:focus {
+      transform: none;
+    }
+  }
+
+  @include respond-to(tablet-and-below) {
+    font-size: var(--font-size-sm);
+    height: 38px;
+  }
+}
+
+// Globe Icon Wrapper (for positioning dropdown)
+.searchIconWrapper {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  @include respond-to(tablet-and-below) {
+    left: var(--spacing-sm);
+  }
+}
+
+// Globe Icon Button Inside Input
+.searchIcon {
+  font-size: var(--search-icon-size);
+  color: var(--color-search-icon);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include respond-to(tablet-and-below) {
+    font-size: 18px;
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Language Dropdown Menu
+.languageDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-accent-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 150px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+// Language Option Button
+.languageOption {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+  }
+
+  &.active {
+    background-color: rgba(255, 215, 0, 0.2);
+    border-left: 3px solid var(--color-accent-primary);
+    padding-left: calc(var(--spacing-md) - 3px);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+.langIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.langName {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+// Clear Button (X icon)
+.clearButton {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: 50%;
+  color: var(--color-search-icon);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-search-text);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Search Results Dropdown (for future implementation)
+.searchDropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-sm));
+  left: 0;
+  right: 0;
+  background-color: var(--color-search-bg);
+  border: 2px solid var(--color-search-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: var(--z-search-dropdown);
+  padding: var(--spacing-sm);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-search-border);
+    border-radius: 3px;
+  }
+
+  @include respond-to(tablet-and-below) {
+    max-height: 300px;
+  }
+}
+
+// Search Results Item
+.searchResultItem {
+  padding: var(--spacing-md);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--color-search-text);
+  transition: background-color var(--transition-fast);
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+  }
+
+  &:focus {
+    background-color: rgba(255, 215, 0, 0.15);
+    outline: 2px solid var(--color-accent-primary);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Mobile Overlay (when search expands on mobile)
+.searchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-overlay);
+  z-index: calc(var(--z-search-dropdown) - 1);
+  cursor: pointer;
+
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+// Expanded Mobile Search Container
+.searchContainerMobile {
+  position: fixed;
+  top: var(--header-height-mobile);
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-primary);
+  z-index: var(--z-search-dropdown);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  @include respond-to(tablet) {
+    top: var(--header-height-tablet);
+  }
+
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+// Collapsed Search Button (Mobile)
+.searchButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+
+  &:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include focus-visible;
+
+  @include reduced-motion {
+    transition: none;
+  }
+
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+// No Results Message
+.noResults {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+// Loading State
+.searchLoading {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}

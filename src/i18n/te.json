@@ -1,0 +1,37 @@
+{
+  "menu": {
+    "home": "హోమ్",
+    "contact": "సంప్రదించండి",
+    "about": "మా గురించి"
+  },
+  "search": {
+    "placeholder": "వెతకండి...",
+    "label": "వెతకండి",
+    "clear": "తొలగించు",
+    "selectLanguage": "శోధన భాషను ఎంచుకోండి"
+  },
+  "theme": {
+    "darkMode": "డార్క్ మోడ్",
+    "lightMode": "లైట్ మోడ్",
+    "toggle": "థీమ్ మార్చండి"
+  },
+  "user": {
+    "profile": "యూజర్ ప్రొఫైల్",
+    "notifications": "నోటిఫికేషన్లు",
+    "login": "యూజర్ లాగిన్",
+    "adminLogin": "అడ్మిన్ లాగిన్"
+  },
+  "languages": {
+    "tamil": "தமிழ்",
+    "english": "English",
+    "telugu": "తెలుగు"
+  },
+  "aria": {
+    "openMenu": "మెను తెరవండి",
+    "closeMenu": "మెనుని మూసివేయండి",
+    "openSearch": "శోధనను తెరవండి",
+    "closeSearch": "శోధనను మూసివేయండి",
+    "selectLanguage": "భాషను ఎంచుకోండి",
+    "clearSearch": "శోధనను తొలగించండి"
+  }
+}
