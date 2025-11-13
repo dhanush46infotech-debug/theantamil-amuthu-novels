@@ -133,9 +133,9 @@ The header contains three main elements in a single row:
 
 1. **Logo** (Left): Clickable placeholder logo
 2. **Hamburger Menu** (Center): Toggles the slide-out navigation
-3. **Language Switcher** (Right): World icon to switch between Tamil and English
+3. ** Switcher** (Right): World icon to switch between Tamil and English
 
-## 🌍 Language Switcher
+## 🌍  Switcher
 
 Currently shows two options:
 - TAMIL

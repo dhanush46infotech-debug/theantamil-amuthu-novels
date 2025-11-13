@@ -1,0 +1,102 @@
+.hero-banner-wrapper {
+  /* Full-bleed banner that spans the viewport width */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  /* Pull the banner up a couple pixels so it visually touches the header bottom */
+  margin-top: calc(var(--app-header-offset, 80px) - 2px);
+  padding: 0;
+  z-index: 5;
+}
+
+.hero-banner-container {
+  width: 100%;
+  height: 520px;
+  min-height: 420px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 24px; /* small internal padding so interactive controls never touch viewport edge */
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.9);
+  border-top: none;
+  border-bottom: none;
+
+  /* Light mode overrides */
+  [data-theme="light"] & {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 50%, #f5f7fa 100%);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.05);
+    border-top: none;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.1);
+  }
+}
+
+// Responsive height adjustments for smaller screens
+@media (max-width: 1200px) {
+  .hero-banner-container {
+    height: 480px;
+    min-height: 400px;
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner-container {
+    height: 420px;
+    min-height: 360px;
+    max-height: 480px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner-container {
+    height: 360px;
+    min-height: 320px;
+    max-height: 420px;
+  }
+}
+
+// Slides container - transitions smoothly
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+// Individual slide - fixed content positioning
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+  padding: 0;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
